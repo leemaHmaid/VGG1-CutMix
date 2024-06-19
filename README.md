@@ -27,8 +27,14 @@ The repository consists of the following files:
 - `train.py`: Implements the training loop using SGD optimizer and learning rate scheduler.
   
 ## Data Augmentation
+## Basic Augmentation:
+- Random Cropping.
+- Color jittering.
+- Image resize
 
 ## CutMix Implementation
+ ![cutmixDA](https://github.com/leemaHmaid/VGG1-CutMix/assets/52715254/c010f5f9-6ba0-46c7-8837-95634aaac367)
+
 
 ### Overview
 CutMix is an advanced data augmentation technique that goes beyond traditional methods by mixing parts of multiple images and their corresponding labels. This method encourages the model to learn from diverse image regions and labels, thereby enhancing its ability to generalize to unseen data.
