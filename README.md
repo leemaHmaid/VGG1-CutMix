@@ -8,17 +8,10 @@ This repository contains an implementation of the VGG11 architecture from scratc
 
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Data Augmentation](#data-augmentation)
   - [Basic Transformations](#basic-transformations)
   - [CutMix Implementation](#cutmix-implementation)
-- [Training](#training)
-- [Evaluation](#evaluation)
-- [Results](#results)
-- [Contributors](#contributors)
-- [License](#license)
-
+ 
 ## Introduction
 
 The VGG11 architecture is a convolutional neural network model that achieves excellent performance on image recognition tasks. This project extends the traditional training process by incorporating CutMix, a regularization technique that improves model robustness by mixing parts of different images and their labels during training.
@@ -27,15 +20,23 @@ The VGG11 architecture is a convolutional neural network model that achieves exc
 
 The repository consists of the following files:
 
-- `dataset.py`: Handles the loading and preprocessing of the ImageNet dataset.
+- `CustomImageDataset.py`: Handles the loading and preprocessing of the ImageNet dataset.
 - `cutmix.py`: Implements the CutMix data augmentation technique.
 - `model.py`: Defines the VGG11 model architecture.
 - `validate.py`: Contains the validation function to evaluate the model's performance.
 - `train.py`: Implements the training loop using SGD optimizer and learning rate scheduler.
+  
+## Data Augmentation
 
-## Installation
+## CutMix Implementation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/vgg11-cutmix.git
-   cd vgg11-cutmix
+### Overview
+CutMix is an advanced data augmentation technique that goes beyond traditional methods by mixing parts of multiple images and their corresponding labels. This method encourages the model to learn from diverse image regions and labels, thereby enhancing its ability to generalize to unseen data.
+
+### How CutMix Works
+- Random Selection: Two images are randomly selected from the dataset.
+- Random Bounding Box: A random bounding box is selected from one of the images.
+- Patch Mixing: The selected bounding box in the first image is replaced with a patch from the second image.
+- Label Mixing: The labels of the original and patch images are mixed proportionally to the area of overlap between the bounding box and the patch.
+- CutMix helps in regularizing the model, reducing overfitting, and improving its robustness to variations in the dataset.
+
