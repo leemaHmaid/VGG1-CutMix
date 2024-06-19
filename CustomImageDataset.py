@@ -3,13 +3,10 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
 from PIL import Image
-import torch.nn.functional as F
-import numpy as np
-import torch
 import torchvision.transforms as transforms
-import torchvision.datasets as datasets
-import torch.nn as nn
-import torch.optim as optim
+from torchvision import transforms
+from torch.utils.data import Dataset, DataLoader
+ 
 
 
 
@@ -114,3 +111,13 @@ class CustomImageDataset(Dataset):
             image = self.transform(image)
         
         return image, label
+    
+ 
+# Create dataset instances
+ 
+train_dataset = CustomImageDataset(class_mapping_dict, IMAGE_PATH_TRAIN, transform = transforms)
+val_dataset = CustomImageDataset(class_mapping_dict, IMAGE_PATH_VALID, map_validation_images_to_classes(IMAGE_PATH_VALID),transform= transforms)
+
+# Create DataLoader instances
+ 
+val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=4)
